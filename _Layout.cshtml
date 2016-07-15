@@ -27,7 +27,6 @@
             <div>
                 <nav>
                     @Html.ActionLink(_Layout.Home, "Index", "Home", null, ViewBag.PageId.Equals("Home") ? new { @class = "current" } : null)
-                    @*@Html.ActionLink(_Layout.Blog, "Index", "Blog", null, ViewBag.PageId.Equals("Blog") ? new { @class = "current" } : null)*@
                     @if (User.Identity.IsAuthenticated)
                     {
                         @Html.ActionLink("Account", "Index", "Account", null, ViewBag.PageId.Equals("Account") ? new { @class = "current" } : null)
