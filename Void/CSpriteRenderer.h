@@ -37,26 +37,26 @@ namespace Void
 		class CSpriteRenderer
 		{
 		private:
-			IDirect3DDevice9*							m_Device;
-			CResourceManager*							m_ResourceManager;
+			IDirect3DDevice9*					m_Device;
+			CResourceManager*					m_ResourceManager;
 
 			std::deque<RenderJob_Sprite* const>			m_JobQueueBackground[2];
-			uint16										m_BackgroundQueueCnt[2];
-			uint8										m_ActiveQueueBackground;
+			uint16							m_BackgroundQueueCnt[2];
+			uint8							m_ActiveQueueBackground;
 
 			std::deque<RenderJob_Sprite* const>			m_JobQueueForeground[2];
-			uint16										m_ForegroundQueueCnt[2];
-			uint8										m_ActiveQueueForeground;
+			uint16							m_ForegroundQueueCnt[2];
+			uint8							m_ActiveQueueForeground;
 
 			IDirect3DVertexDeclaration9*				m_VertexDeclaration;
-			IDirect3DVertexBuffer9*						m_VertexBuffer;
-			IDirect3DIndexBuffer9*						m_IndexBuffer;
+			IDirect3DVertexBuffer9*					m_VertexBuffer;
+			IDirect3DIndexBuffer9*					m_IndexBuffer;
 
-			CMatrix4x4									m_SpriteViewMatrix;
-			CMatrix4x4									m_SpriteProjMatrix;
-			CMatrix4x4									m_SpriteWorldMatrix;
-			float32										m_ScreenHeight;
-			float32										m_ScreenWidth;
+			CMatrix4x4						m_SpriteViewMatrix;
+			CMatrix4x4						m_SpriteProjMatrix;
+			CMatrix4x4						m_SpriteWorldMatrix;
+			float32							m_ScreenHeight;
+			float32							m_ScreenWidth;
 
 		private:
 			void EnterSpriteIntoBuffer (Vertex_Sprite* const vertices, const RenderJob_Sprite* const job);
