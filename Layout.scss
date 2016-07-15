@@ -1,0 +1,190 @@
+﻿@import "ColorDefinitions";
+@import "Shared";
+
+$font-family: Calibri, Arial, sans-serif;
+
+html
+{
+    font-family: $font-family;
+    height: 100%;
+}
+
+body
+{
+    height: 100%;
+    background-color: $colorSecond;
+    display: flex;
+    justify-content: center;
+    align-content: stretch;
+    overflow-y: scroll;
+}
+
+#gear01
+{
+    position: fixed;
+    margin-top: -200px;
+    margin-left: -250px;
+    width: 360px;
+    height: 360px;
+    background-image: url("../Images/gear02.png");
+    background-size: cover;
+    opacity: 0.2;
+    pointer-events: none;
+}
+
+#gear02
+{
+    position: fixed;
+    margin-top: 122px;
+    margin-left: -160px;
+    width: 300px;
+    height: 300px;
+    background-image: url("../Images/gear01.png");
+    background-size: cover;
+    opacity: 0.2;
+    pointer-events: none;
+}
+
+#page
+{
+    max-width: $pageWidth;
+    flex: 0 1 $pageWidth;
+    display: flex;
+    flex-flow: column nowrap;
+
+    height:100%;
+    
+    #dummy
+    {
+        flex: 0 0 $headerHeight;
+    }
+
+    main
+    {
+        background-color: $colorMain;
+        z-index: 10;
+        box-shadow: 5px 5px 10px 0 $colorHighlight;
+        flex: 1 0 auto;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+    
+    }
+
+    footer
+    {
+        flex: 0 1 auto;
+
+        color: $colorMain;
+        display: flex;
+        padding-bottom: 1em;
+        justify-content: space-between;
+    
+        a
+        {
+            display: inline-block;
+            color: $colorMain;
+            margin: 1em 1em 0 1em;
+            text-decoration: underline;
+            white-space: nowrap;
+
+            &:visited
+            {
+                color: $colorMain;
+            }
+            &:hover
+            {
+                color: $colorHighlight;
+            }
+            &:active
+            {
+                color: $colorTextHighlight;
+            }
+            &.current
+            {
+                color: $colorTextHighlight;
+            }
+        }
+        nav
+            {
+            text-align:center;
+        }
+        span
+        {
+            margin: 1em 1em 0 1em;
+        }
+    }
+}
+
+#pagetop
+{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    width: 100%;
+    height: $headerHeight;
+    z-index: 20;
+}
+
+header
+{
+    flex: 0 1 $pageWidth;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    background-color: $colorMain;
+    box-shadow: 0 0 10px 0 $colorHighlight;
+
+    > a
+    {
+        flex: 1 1 100px;
+        max-width: $pageWidth;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        div
+        {
+            flex: 0 1 610px;
+        }
+    }
+    > div
+    {        
+        display: flex;
+        justify-content: center;
+        nav
+        {
+            flex: 0 1 $pageWidth / 2; 
+            display: flex;
+            justify-content: space-around;
+            flex-flow: row wrap;
+            color: $colorTextMain;
+            font-size: 1.4em;
+            white-space: nowrap;
+            padding-bottom: 0.3em;
+            > a
+            {
+                color: $colorTextMain;
+                margin-top: 0.3em;
+                text-decoration: none;
+                &:visited
+                {
+                    color: $colorTextMain;
+                }
+                &:hover
+                {
+                    color:$colorTextSecond;
+                }
+                &:active
+                {
+                    color: $colorTextHighlight;
+                }
+                &.current
+                {
+                    color: $colorTextHighlight;
+                }
+            }
+        }
+    }
+}
+
