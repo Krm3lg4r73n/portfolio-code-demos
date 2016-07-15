@@ -35,7 +35,7 @@ namespace Void
 	
 		typedef std::map<const CHashedString, ShaderConstant*>	ConstantMap;
 		typedef std::pair<const CHashedString, ShaderConstant*>	ConstantMapEnt;
-		typedef std::pair<ConstantMap::iterator, bool>			ConstantMapIRes;
+		typedef std::pair<ConstantMap::iterator, bool>		ConstantMapIRes;
 
 		class CEntity3D : public IShaderConstantSetter
 		{
