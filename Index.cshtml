@@ -1,0 +1,65 @@
+﻿@using WebsiteBannwerk.Resources.Home
+@model HomeViewModel
+@{
+    ViewBag.Title = "Home";
+    ViewBag.PageId = "Home";
+}
+
+<section id="home">
+    <div id="banner">
+        <a href="@Url.Action("Index", "About", null)" title="Bannwerk">
+            <img src="~/Images/banner_office.png" alt="Banner - Welcome" />
+        </a>
+        <a href="@Misc.TumblrHREF" target="_blank" title="Bannwerk - Tumblr">
+            <img src="~/Images/banner_devblog02.jpg" alt="Banner - Facebook" />
+        </a>
+        <a href="@Misc.FacebookHREF" target="_blank" title="Bannwerk - Facebook">
+            <img src="~/Images/fb_banner_website.jpg" alt="Banner - Facebook" />
+        </a>
+    </div>
+    <div id="banner_nav">
+        <div id="nav_bar"></div>
+    </div>
+    <div id="main">
+        <h1>@Misc.NewsHeadline</h1>
+        <div id="newsEditor">
+            @if (User.IsInRole("master") || User.IsInRole("authorNews"))
+            {
+                @Html.Partial("_AddNews", Model.AddNews)
+            }
+        </div>
+        <div id="news">
+            @Html.Partial("_NewsList", Model.NewsItems)
+        </div>
+    </div>
+    <div id="twitter">
+        <div id="mediaIcons">
+            <a id="facebook" href="@Misc.FacebookHREF" target="_blank" title="Facebook"></a>
+            <a id="reddit" href="@Misc.RedditHREF" target="_blank" title="Reddit"></a>
+            <a id="youtube" href="@Misc.YoutubeHREF" target="_blank" title="YouTube"></a>
+            <a id="tumblr" href="@Misc.TumblrHREF" target="_blank" title="Tumblr"></a>
+        </div>
+        <div id="logo_bmwi">
+            <img src="~/Images/Logo_BMWi.jpg" alt="Gefördert durch Bundesministerium für Wirtschaft und Energie aufgrund eines Beschlusses des Deutschen Bundestages" />
+        </div>
+        <div id="external_logos">
+            <div id="logo_exist">
+                <img src="~/Images/Logo_EXIST.jpg" alt="EXIST - Existenzgründungen aus der Wissenschaft" />
+            </div>
+            <div id="logo_esf">
+                <img src="~/Images/Logo_ESF.jpg" alt="Europäischer Sozialfonds für Deutschland" />
+            </div>
+            <div id="logo_eu">
+                <img src="~/Images/Logo_EU_links.jpg" alt="Europäische Union" />
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts {
+    @Scripts.Render("~/bundles/home_js")
+    @if (User.IsInRole("master") || User.IsInRole("authorNews")) 
+    { 
+        @Scripts.Render("~/bundles/homeNewsEditor_js") 
+    }
+}

@@ -1,0 +1,86 @@
+﻿@using WebsiteBannwerk.Resources.Main
+@using WebsiteBannwerk.Globalisation
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Bannwerk - @ViewBag.Title</title>
+    @Styles.Render("~/bundles/bannwerk_css")
+    @Scripts.Render("~/bundles/modernizr")
+    <meta name="description" content="Bannwerk Interactive is a small independent game development studio based in Duisburg, Germany. We are currently working on our first multiplayer online game: LORE - Live Online Roleplaying Events." />
+    <meta name="keywords" content="bannwerk, interactive, Spieleentwicklung, game development, Videospiele, Computerspiele, software development, indie, indipendent, games, video games, computer games, LORE, L.O.R.E, events, roleplaying events" />
+</head>
+<body>
+    @if(!Request.Browser.IsMobileDevice)
+    {
+        <div id="gear01"></div>
+        <div id="gear02"></div>
+    }
+    
+    <div id="pagetop">
+        <header>
+            <a href="@Url.Action("Index", "Home")">
+                <div><img src="~/Images/logo.png" alt="Bannwerk Interactive" /></div>
+            </a>
+
+            <div>
+                <nav>
+                    @Html.ActionLink(_Layout.Home, "Index", "Home", null, ViewBag.PageId.Equals("Home") ? new { @class = "current" } : null)
+                    @*@Html.ActionLink(_Layout.Blog, "Index", "Blog", null, ViewBag.PageId.Equals("Blog") ? new { @class = "current" } : null)*@
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        @Html.ActionLink("Account", "Index", "Account", null, ViewBag.PageId.Equals("Account") ? new { @class = "current" } : null)
+                        if(User.IsInRole("master"))
+                        {
+                            @Html.ActionLink("Users", "Index", "UserManagement", null, ViewBag.PageId.Equals("UserManagement") ? new { @class = "current" } : null)
+                        }
+                        if(User.IsInRole("master") || User.IsInRole("authorNews") || User.IsInRole("authorContent"))
+                        {
+                            @Html.ActionLink("Content", "Index", "Content", null, ViewBag.PageId.Equals("Content") ? new { @class = "current" } : null)
+                        }
+                        @Html.ActionLink(_Layout.Logout + " (" + User.Identity.Name + ")", "Logout", "Account")
+                    }
+                    else
+                    {
+                        @Html.ActionLink(_Layout.About, "Index", "About", null, ViewBag.PageId.Equals("About") ? new { @class = "current" } : null)
+                        @Html.ActionLink(_Layout.Contact, "Index", "Contact", null, ViewBag.PageId.Equals("Contact") ? new { @class = "current" } : null)
+                    }
+                </nav>
+            </div>
+        </header>
+    </div>
+    <div id="page">
+        <div id="dummy"></div>
+        <main>  
+            @RenderBody()
+        </main>
+        <footer>
+            @if (Main.CurrentLanguage.Equals("en"))
+            {
+                @Html.GlobalisedRouteLink("Deutsch", "de", ViewContext.RouteData)
+            }
+            else
+            {
+                @Html.GlobalisedRouteLink("English", "en", ViewContext.RouteData)
+            }
+            <nav>
+                @Html.ActionLink(_Layout.Imprint, "Index", "Imprint", null, ViewBag.PageId.Equals("Imprint") ? new { @class = "current" } : null)
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @Html.ActionLink(_Layout.About, "Index", "About", null, ViewBag.PageId.Equals("About") ? new { @class = "current" } : null)
+                    @Html.ActionLink(_Layout.Contact, "Index", "Contact", null, ViewBag.PageId.Equals("Contact") ? new { @class = "current" } : null)
+                }
+                else
+                {
+                    @Html.ActionLink("Login", "Index", "Account")
+                }
+            </nav>
+            <span>Bannwerk Interactive &copy; 2015</span>
+        </footer>
+    </div>
+    @RenderSection("belowLayout", required: false)
+    @Scripts.Render("~/bundles/main_js")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
