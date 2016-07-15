@@ -40,13 +40,13 @@ namespace Void
 		class CEntity3D : public IShaderConstantSetter
 		{
 		private:
-			ConstantMap				m_ConstantMap;
+			ConstantMap			m_ConstantMap;
 
 		public:
 			CHashedString			Identifier;
 
 			//global world transformation (determined by scene graph)
-			CMatrix4x4				WorldMatrix;
+			CMatrix4x4			WorldMatrix;
 
 			//global object oriented bounding-box
 			CBoundingBox*			BoundingBox;
