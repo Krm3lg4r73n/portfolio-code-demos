@@ -75,7 +75,6 @@ namespace Lore
             }
         }
 
-
         public ItemReference GetItem(short slotIndex)
         {
             if (slotIndex < 0 && slotIndex >= capacity)
@@ -225,7 +224,6 @@ namespace Lore
         }
 
         
-
         public void Serialize(NetworkWriter writer)
         {
             writer.Write(id);
